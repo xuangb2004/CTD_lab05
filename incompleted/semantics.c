@@ -1,5 +1,4 @@
-/* 
- * @copyright (c) 2008, Hedspi, Hanoi University of Technology
+/* * @copyright (c) 2008, Hedspi, Hanoi University of Technology
  * @author Huu-Duc Nguyen
  * @version 1.0
  */
@@ -109,25 +108,32 @@ Object* checkDeclaredLValueIdent(char* name) {
   return obj;
 }
 
-
 void checkIntType(Type* type) {
-  // TODO
+  // Kiểm tra nếu kiểu không phải là số nguyên (TP_INT) thì báo lỗi
+  if ((type != NULL) && (type->typeClass != TP_INT))
+    error(ERR_TYPE_INCONSISTENCY, currentToken->lineNo, currentToken->colNo);
 }
 
 void checkCharType(Type* type) {
-  // TODO
+  // Kiểm tra nếu kiểu không phải là ký tự (TP_CHAR) thì báo lỗi
+  if ((type != NULL) && (type->typeClass != TP_CHAR))
+    error(ERR_TYPE_INCONSISTENCY, currentToken->lineNo, currentToken->colNo);
 }
 
 void checkBasicType(Type* type) {
-  // TODO
+  // Kiểm tra kiểu cơ bản: phải là Int hoặc Char
+  if ((type != NULL) && (type->typeClass != TP_INT) && (type->typeClass != TP_CHAR))
+    error(ERR_TYPE_INCONSISTENCY, currentToken->lineNo, currentToken->colNo);
 }
 
 void checkArrayType(Type* type) {
-  // TODO
+  // Kiểm tra nếu kiểu không phải là mảng (TP_ARRAY) thì báo lỗi
+  if ((type != NULL) && (type->typeClass != TP_ARRAY))
+    error(ERR_TYPE_INCONSISTENCY, currentToken->lineNo, currentToken->colNo);
 }
 
 void checkTypeEquality(Type* type1, Type* type2) {
-  // TODO
+  // So sánh hai kiểu, nếu khác nhau (hàm trả về 0) thì báo lỗi
+  if (compareType(type1, type2) == 0)
+    error(ERR_TYPE_INCONSISTENCY, currentToken->lineNo, currentToken->colNo);
 }
-
-
